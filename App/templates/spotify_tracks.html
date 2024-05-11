@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Tracks</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        li {
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        strong {
+            font-weight: bold;
+        }
+        li:not(:last-child) {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Spotify Tracks</h1>
+    <ul>
+        {% for track in tracks %}
+        <li>
+            <strong>{{ track.name }}</strong> by 
+            {% for artist in track.artists %}
+                {{ artist.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+            <audio controls>
+                <source src="{{ track.preview_url }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
